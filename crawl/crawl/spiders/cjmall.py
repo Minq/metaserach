@@ -44,7 +44,13 @@ class CjmallSpider(scrapy.Spider):
                 item['title'] = extract(sel, path, '')
                 path = ('div.domainTxt > div.price '
                         '> span > span.blue > strong::text')
-                item['price'] = extract(sel, path, 0)
+                price = extract(sel, path, 0)
+                path = ('div.domainTxt > div.price '
+                        '> span > span > strong::text')
+                origin_price = extract(sel, path, 0)
+                item['price'] = origin_price
+                if price:
+                    item['price'] = price
                 path = 'a > img::attr(src)'
                 item['image_url'] = extract(sel, path, '')
                 path = 'div.domainTxt > div.name > a::attr(href)'

@@ -41,7 +41,7 @@ function clearList() {
 function search(query, order) {
     $.getJSON( "/search",{query: query, order: order}, function(data) {
         clearList();
-        display(data)
+        display(data);
     });
 }
 
@@ -70,7 +70,7 @@ Handlebars.registerHelper('truncate', function(s, n) {
 
 Handlebars.registerHelper('type2Hangul', function(k) {
     var names = {coupang: '쿠팡', cjmall: 'CJ몰'};
-    return names[k]
+    return names[k];
 });
 </script>
 {% endblock footer_bottom %}

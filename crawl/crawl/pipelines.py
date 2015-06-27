@@ -26,22 +26,30 @@ class StripPipeline(object):
 
 class EmptyCheckPipeline(object):
 
-    VIP_KEYS = ('id', 'price',)
+    VIP_KEYS = {
+        'coupang':  ('id', 'price',),
+        'cjmall': ('id', 'price',),
+    }
 
     def process_item(self, item, spider):
+        vip_keys = self.VIP_KEYS[spider.name]
         for k, v in item.items():
-            if k in self.VIP_KEYS and not v:
+            if k in vip_keys and not v:
                 raise DropItem('EmptyCheckError: {0} is empty'.format(k))
         return item
 
 
 class NumberCastPipeline(object):
 
-    KEYS = ('id', 'price', 'condition',)
+    KEYS = {
+        'coupang': ('id', 'price', 'condition',),
+        'cjmall': ('id', 'price',  'condition',),
+    }
 
     def process_item(self, item, spider):
+        keys = self.KEYS[spider.name]
         for k, v in item.items():
-            if k in self.KEYS:
+            if k in keys:
                 try:
                     item[k] = locale.atoi(v)
                 except (exceptions.AttributeError, exceptions.ValueError):
