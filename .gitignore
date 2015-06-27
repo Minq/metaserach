@@ -1,0 +1,9 @@
+*.pyc
+*.sqlite3
+*.sqlite
+*.pid
+.idea/
+.sass-cache
+static/css/.sass-cache
+static/.sass-cache
+static/vendor

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block container %}
+<div id="list" class="row">
+</div>
+{% endblock container %}
+
+{% block footer_bottom %}
+{% raw %}
+<script id="item-template" type="text/x-handlebars-template">
+<ul class="thumbnails">
+{{#each products}}
+<a href="{{ link }}" target="_blank">
+  <div class="col-md-8">
+    <div class="thumbnail">
+      <img src="{{ image_url }}" alt="{{ title }}" class="img-responsive" style="min-height: 300px;"/>
+      <div class="caption">
+        <h3>{{ numberWithCommas price }}원</h3>
+        <p>{{ truncate title 25 }}</p>
+        <p>{{ type2Hangul type }}</p>{{#if condition }}<p><mark>{{ numberWithCommas condition }}</mark>개 판매</p>{{/if}}
+      </div>
+    </div>
+  </div>
+</a>
+{{/each}}
+</ul>
+</script>
+{% endraw %}
+<script type="text/javascript">
+function display(data) {
+    var source = $('#item-template').html();
+    var template = Handlebars.compile(source);
+    var html = template(data);
+    $(html).appendTo('#list');
+}
+
+function clearList() {
+    $('#list').empty();
+}
+
+function search(query, order) {
+    $.getJSON( "/search",{query: query, order: order}, function(data) {
+        clearList();
+        display(data)
+    });
+}
+
+$(function() {
+    $('#search-form').on('submit', function (e) {
+        query = $('#query').val();
+        if (!query) {
+            return false;
+        }
+        order = $('#order').val();
+        if (!order) {
+            return false;
+        }
+        search(query, order);
+        return false;
+    });
+});
+
+Handlebars.registerHelper('numberWithCommas', function(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+});
+
+Handlebars.registerHelper('truncate', function(s, n) {
+    return _.trunc(s, n);
+});
+
+Handlebars.registerHelper('type2Hangul', function(k) {
+    var names = {coupang: '쿠팡', cjmall: 'CJ몰'};
+    return names[k]
+});
+</script>
+{% endblock footer_bottom %}

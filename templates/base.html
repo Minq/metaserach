@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+{% block meta %}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Social meta search">
+<meta name="author" content="minq">
+{% endblock meta %}
+<title>{% block title %}Meta Search{% endblock title %}</title>
+{% include "partials/header.html" %}
+{% block header_bottom %}{% endblock header_bottom %}
+</head>
+<body>
+{% include "partials/nav.html" %}
+<div class="container">
+{% block container %}{% endblock container %}
+</div>
+{% include "partials/footer.html" %}
+{% block footer_bottom %}{% endblock footer_bottom %}
+</body>
+</html>
