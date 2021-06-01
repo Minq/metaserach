@@ -27,7 +27,7 @@ queuelib==1.2.2
 redis==2.10.3
 requests==2.7.0
 six==1.9.0
-urllib3==1.24.2
+urllib3==1.26.5
 w3lib==1.11.0
 wsgiref==0.1.2
 zope.interface==4.1.2
