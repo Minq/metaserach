@@ -2,7 +2,7 @@ Flask==0.10.1
 Jinja2==2.7.3
 MarkupSafe==0.23
 Scrapy==0.24.6
-Twisted==15.2.1
+Twisted==22.2.0
 Werkzeug==0.10.4
 amqp==1.4.6
 anyjson==0.3.3
