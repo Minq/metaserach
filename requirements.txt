@@ -18,7 +18,7 @@ idna==2.0
 ipaddress==1.0.7
 itsdangerous==0.24
 kombu==3.0.26
-lxml==3.4.4
+lxml==4.9.1
 pyOpenSSL==0.15.1
 pyasn1==0.1.8
 pycparser==2.14
